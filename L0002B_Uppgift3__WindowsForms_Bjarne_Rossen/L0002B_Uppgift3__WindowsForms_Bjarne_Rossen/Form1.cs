@@ -13,8 +13,7 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
 {
     public partial class Form1 : Form
     {
-        List<Person> säljare = new List<Person>();
-       
+    
         public Form1()
         {
             InitializeComponent();
@@ -27,29 +26,97 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
 
         private void btnKontrollera_Click(object sender, EventArgs e)
         {
+            if (txtFörnamn.Text == "Förnamn" || txtEfternamn.Text == "Efternamn" || txtPersonnummer.Text == "ÅÅMMDD-XXXX")
+            {
+                MessageBox.Show("Fyll i alla fält innan du kontrollerar.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                if (!ValideraInmatning(out string fel))
+                {
+                    MessageBox.Show(fel, "Fel i inmatning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string förnamn = txtFörnamn.Text.Trim();
+                string efternamn = txtEfternamn.Text.Trim();
+                string personnummer = txtPersonnummer.Text.Trim();
+
+                Person p = new Person(förnamn, efternamn, personnummer);
+
+                bool giltigt = p.ÄrPersonnummerGiltigt();
+                string kön = p.Kön();
+
+                string resultat =
+                    $"Namn: {p.Förnamn} {p.Efternamn}\r\n" +
+                    $"Personnummer: {p.Personnummer}\r\n" +
+                    $"Giltigt: {(giltigt ? "Ja" : "Nej")}\r\n" +
+                    $"Kön: {kön}\r\n";
+
+                txtResultat.AppendText(resultat);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Felaktigt format på personnummer. Kontrollera att du bara använder siffror och eventuellt ett bindestreck.", "Formatfel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ett oväntat fel inträffade:\r\n{ex.Message}", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValideraInmatning(out string felmeddelande)
+        {
+            felmeddelande = "";
+
             string förnamn = txtFörnamn.Text.Trim();
             string efternamn = txtEfternamn.Text.Trim();
             string personnummer = txtPersonnummer.Text.Trim();
 
-            if (string.IsNullOrEmpty(förnamn) || string.IsNullOrEmpty(efternamn) || string.IsNullOrEmpty(personnummer))
+            // Nollställ färgerna
+            txtFörnamn.BackColor = Color.White;
+            txtEfternamn.BackColor = Color.White;
+            txtPersonnummer.BackColor = Color.White;
+
+            // Kontrollera tomma fält OCH placeholders
+            if (string.IsNullOrWhiteSpace(förnamn) || förnamn == "Förnamn" ||
+                string.IsNullOrWhiteSpace(efternamn) || efternamn == "Efternamn" ||
+                string.IsNullOrWhiteSpace(personnummer) || personnummer == "ÅÅMMDD-XXXX")
             {
-                MessageBox.Show("Alla fält måste fyllas i!", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                felmeddelande = "Alla fält måste fyllas i.";
+
+                if (string.IsNullOrWhiteSpace(förnamn) || förnamn == "Förnamn")
+                    txtFörnamn.BackColor = Color.MistyRose;
+                if (string.IsNullOrWhiteSpace(efternamn) || efternamn == "Efternamn")
+                    txtEfternamn.BackColor = Color.MistyRose;
+                if (string.IsNullOrWhiteSpace(personnummer) || personnummer == "ÅÅMMDD-XXXX")
+                    txtPersonnummer.BackColor = Color.MistyRose;
+
+                return false;
             }
 
-            Person p = new Person(förnamn, efternamn, personnummer);
+            // Kolla att namn bara innehåller bokstäver
+            if (!System.Text.RegularExpressions.Regex.IsMatch(förnamn, @"^[A-Za-zÅÄÖåäö]+$") ||
+                !System.Text.RegularExpressions.Regex.IsMatch(efternamn, @"^[A-Za-zÅÄÖåäö]+$"))
+            {
+                felmeddelande = "För- och efternamn får bara innehålla bokstäver.";
+                txtFörnamn.BackColor = Color.MistyRose;
+                txtEfternamn.BackColor = Color.MistyRose;
+                return false;
+            }
 
-            bool giltigt = p.ÄrPersonnummerGiltigt();
-            string kön = p.Kön();
+            // Kolla personnummerformat
+            if (!System.Text.RegularExpressions.Regex.IsMatch(personnummer, @"^\d{6}[-]?\d{4}$") &&
+                !System.Text.RegularExpressions.Regex.IsMatch(personnummer, @"^\d{8}[-]?\d{4}$"))
+            {
+                felmeddelande = "Personnumret måste vara i formatet ÅÅMMDD-XXXX eller ÅÅÅÅMMDDXXXX.";
+                txtPersonnummer.BackColor = Color.MistyRose;
+                return false;
+            }
 
-            string resultat =
-                $"🧍‍♂️ Namn: {p.Förnamn} {p.Efternamn}\r\n" +
-                $"📅 Personnummer: {p.Personnummer}\r\n" +
-                $"✅ Giltigt: {(giltigt ? "Ja" : "Nej")}\r\n" +
-                $"🚻 Kön: {kön}\r\n" +
-                $"──────────────────────────────\r\n";
-
-            txtResultat.AppendText(resultat);
+            return true;
         }
 
         private void avslutaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,11 +137,9 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
         {
 
             // Gör rubriken stor och centrerad
-            lblTitle.Font = new Font("Segoe UI", 16, FontStyle.Bold);
-            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             lblTitle.AutoSize = false;
             lblTitle.Width = this.Width;
-            lblTitle.Top = 20;
 
             // Lägg till lite luft
             txtFörnamn.Margin = new Padding(10);
@@ -92,9 +157,30 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
             txtResultat.BorderStyle = BorderStyle.FixedSingle;
             txtResultat.Font = new Font("Consolas", 10, FontStyle.Regular);
 
-            // Lägg till tooltip för personnummer
-            ToolTip tip = new ToolTip();
-            tip.SetToolTip(txtPersonnummer, "Skriv in personnummer i formatet ÅÅMMDD-XXXX");
+            // Placeholder för personnummer
+            txtPersonnummer.Text = "ÅÅMMDD-XXXX";
+            txtPersonnummer.ForeColor = Color.Gray;
+
+            // Koppla händelser
+            txtPersonnummer.Enter += TxtPersonnummer_Enter;
+            txtPersonnummer.Leave += TxtPersonnummer_Leave;
+        }
+        private void TxtPersonnummer_Enter(object sender, EventArgs e)
+        {
+            if (txtPersonnummer.Text == "ÅÅMMDD-XXXX")
+            {
+                txtPersonnummer.Text = "";
+                txtPersonnummer.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtPersonnummer_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPersonnummer.Text))
+            {
+                txtPersonnummer.Text = "ÅÅMMDD-XXXX";
+                txtPersonnummer.ForeColor = Color.Gray;
+            }
         }
     }
 }

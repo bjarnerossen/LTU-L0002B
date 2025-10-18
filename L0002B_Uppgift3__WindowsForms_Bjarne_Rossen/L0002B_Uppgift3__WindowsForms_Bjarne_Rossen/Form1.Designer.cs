@@ -46,7 +46,7 @@
             // Förnamn
             // 
             this.Förnamn.AutoSize = true;
-            this.Förnamn.Location = new System.Drawing.Point(127, 135);
+            this.Förnamn.Location = new System.Drawing.Point(207, 129);
             this.Förnamn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Förnamn.Name = "Förnamn";
             this.Förnamn.Size = new System.Drawing.Size(62, 17);
@@ -56,7 +56,7 @@
             // Efternamn
             // 
             this.Efternamn.AutoSize = true;
-            this.Efternamn.Location = new System.Drawing.Point(127, 187);
+            this.Efternamn.Location = new System.Drawing.Point(207, 181);
             this.Efternamn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Efternamn.Name = "Efternamn";
             this.Efternamn.Size = new System.Drawing.Size(70, 17);
@@ -66,7 +66,7 @@
             // Personnummer
             // 
             this.Personnummer.AutoSize = true;
-            this.Personnummer.Location = new System.Drawing.Point(127, 241);
+            this.Personnummer.Location = new System.Drawing.Point(207, 235);
             this.Personnummer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Personnummer.Name = "Personnummer";
             this.Personnummer.Size = new System.Drawing.Size(99, 17);
@@ -76,24 +76,24 @@
             // 
             // txtFörnamn
             // 
-            this.txtFörnamn.Location = new System.Drawing.Point(234, 135);
-            this.txtFörnamn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFörnamn.Location = new System.Drawing.Point(314, 129);
+            this.txtFörnamn.Margin = new System.Windows.Forms.Padding(4);
             this.txtFörnamn.Name = "txtFörnamn";
             this.txtFörnamn.Size = new System.Drawing.Size(116, 25);
             this.txtFörnamn.TabIndex = 3;
             // 
             // txtEfternamn
             // 
-            this.txtEfternamn.Location = new System.Drawing.Point(234, 183);
-            this.txtEfternamn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEfternamn.Location = new System.Drawing.Point(314, 177);
+            this.txtEfternamn.Margin = new System.Windows.Forms.Padding(4);
             this.txtEfternamn.Name = "txtEfternamn";
             this.txtEfternamn.Size = new System.Drawing.Size(116, 25);
             this.txtEfternamn.TabIndex = 4;
             // 
             // txtPersonnummer
             // 
-            this.txtPersonnummer.Location = new System.Drawing.Point(234, 237);
-            this.txtPersonnummer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPersonnummer.Location = new System.Drawing.Point(314, 231);
+            this.txtPersonnummer.Margin = new System.Windows.Forms.Padding(4);
             this.txtPersonnummer.Name = "txtPersonnummer";
             this.txtPersonnummer.Size = new System.Drawing.Size(116, 25);
             this.txtPersonnummer.TabIndex = 5;
@@ -101,10 +101,10 @@
             // 
             // btnKontrollera
             // 
-            this.btnKontrollera.Location = new System.Drawing.Point(233, 293);
-            this.btnKontrollera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKontrollera.Location = new System.Drawing.Point(210, 287);
+            this.btnKontrollera.Margin = new System.Windows.Forms.Padding(4);
             this.btnKontrollera.Name = "btnKontrollera";
-            this.btnKontrollera.Size = new System.Drawing.Size(117, 31);
+            this.btnKontrollera.Size = new System.Drawing.Size(220, 31);
             this.btnKontrollera.TabIndex = 6;
             this.btnKontrollera.Text = "✔ Kontrollera";
             this.btnKontrollera.UseVisualStyleBackColor = true;
@@ -112,8 +112,8 @@
             // 
             // txtResultat
             // 
-            this.txtResultat.Location = new System.Drawing.Point(130, 354);
-            this.txtResultat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtResultat.Location = new System.Drawing.Point(210, 348);
+            this.txtResultat.Margin = new System.Windows.Forms.Padding(4);
             this.txtResultat.Multiline = true;
             this.txtResultat.Name = "txtResultat";
             this.txtResultat.ReadOnly = true;
@@ -128,7 +128,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(753, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(636, 25);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "Arkiv";
             // 
@@ -149,7 +149,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(127, 72);
+            this.lblTitle.Location = new System.Drawing.Point(207, 79);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(140, 17);
             this.lblTitle.TabIndex = 9;
@@ -160,7 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(753, 588);
+            this.ClientSize = new System.Drawing.Size(636, 588);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtResultat);
             this.Controls.Add(this.btnKontrollera);
@@ -174,7 +174,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personnummerkontroll";
