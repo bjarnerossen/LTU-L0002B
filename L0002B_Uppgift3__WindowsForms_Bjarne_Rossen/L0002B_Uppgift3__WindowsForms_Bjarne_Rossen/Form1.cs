@@ -26,6 +26,9 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
 
         private void btnKontrollera_Click(object sender, EventArgs e)
         {
+            // Töm alltid resultatfältet först
+            txtResultat.Clear();
+
             if (txtFörnamn.Text == "Förnamn" || txtEfternamn.Text == "Efternamn" || txtPersonnummer.Text == "ÅÅMMDD-XXXX")
             {
                 MessageBox.Show("Fyll i alla fält innan du kontrollerar.", "Fel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -36,6 +39,7 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
             {
                 if (!ValideraInmatning(out string fel))
                 {
+                    // Visa felmeddelande och avbryt
                     MessageBox.Show(fel, "Fel i inmatning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -49,13 +53,12 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
                 bool giltigt = p.ÄrPersonnummerGiltigt();
                 string kön = p.Kön();
 
-                string resultat =
+                // Skriv direkt till textfältet istället för AppendText
+                txtResultat.Text =
                     $"Namn: {p.Förnamn} {p.Efternamn}\r\n" +
                     $"Personnummer: {p.Personnummer}\r\n" +
                     $"Giltigt: {(giltigt ? "Ja" : "Nej")}\r\n" +
                     $"Kön: {kön}\r\n";
-
-                txtResultat.AppendText(resultat);
             }
             catch (FormatException)
             {
