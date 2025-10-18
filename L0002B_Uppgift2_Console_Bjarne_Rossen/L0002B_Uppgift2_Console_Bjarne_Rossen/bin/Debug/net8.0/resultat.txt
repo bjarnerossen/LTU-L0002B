@@ -1,0 +1,17 @@
+Namn	Personnummer	Distrikt	Antal artiklar
+Anna Andersson	9001011234	Piteå	45
+David Dahl	0101011111	Kiruna	80
+Björn Berg	8803034567	Boden	150
+Clara Carlsson	9905057890	Luleå	250
+
+1 säljare har nått Nivå 1: under 50 artiklar
+45
+
+1 säljare har nått Nivå 2: 50-99 artiklar
+80
+
+1 säljare har nått Nivå 3: 100-199 artiklar
+150
+
+1 säljare har nått Nivå 4: över 199 artiklar
+250
