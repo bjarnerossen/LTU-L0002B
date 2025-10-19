@@ -72,7 +72,6 @@
             this.Personnummer.Size = new System.Drawing.Size(99, 17);
             this.Personnummer.TabIndex = 2;
             this.Personnummer.Text = "Personnummer:";
-            this.Personnummer.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtFörnamn
             // 

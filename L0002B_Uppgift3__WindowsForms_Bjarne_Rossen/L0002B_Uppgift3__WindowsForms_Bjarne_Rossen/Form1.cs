@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
@@ -17,11 +10,6 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnKontrollera_Click(object sender, EventArgs e)
@@ -53,7 +41,7 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
                 bool giltigt = p.ÄrPersonnummerGiltigt();
                 string kön = p.Kön();
 
-                // Skriv direkt till textfältet istället för AppendText
+                // Skriv direkt till textfältet
                 txtResultat.Text =
                     $"Namn: {p.Förnamn} {p.Efternamn}\r\n" +
                     $"Personnummer: {p.Personnummer}\r\n" +
@@ -144,12 +132,12 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
             lblTitle.AutoSize = false;
             lblTitle.Width = this.Width;
 
-            // Lägg till lite luft
+            // Lägg till lite luft (padding)
             txtFörnamn.Margin = new Padding(10);
             txtEfternamn.Margin = new Padding(10);
             txtPersonnummer.Margin = new Padding(10);
 
-            // Gör knappen mer modern
+            // Gör knappen mer modern -> grön, vit och platt
             btnKontrollera.BackColor = Color.MediumSeaGreen;
             btnKontrollera.ForeColor = Color.White;
             btnKontrollera.FlatStyle = FlatStyle.Flat;

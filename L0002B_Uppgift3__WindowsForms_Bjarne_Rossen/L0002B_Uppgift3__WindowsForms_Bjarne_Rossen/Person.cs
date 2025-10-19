@@ -31,7 +31,7 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
             if (pnr.Length == 12)
                 pnr = pnr.Substring(2); // Ta bort århundradet
 
-            // Kontrollsiffra enligt Luhn-algoritmen (kontrollsiffra/21-metoden)
+            // Kontrollsiffra enligt Luhn-algoritmen (21-metoden)
             int sum = 0;
             for (int i = 0; i < 9; i++)
             {
