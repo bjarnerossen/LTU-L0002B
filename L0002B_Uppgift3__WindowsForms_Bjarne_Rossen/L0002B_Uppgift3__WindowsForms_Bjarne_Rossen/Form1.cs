@@ -98,7 +98,7 @@ namespace L0002B_Uppgift3__WindowsForms_Bjarne_Rossen
                 return false;
             }
 
-            // Kolla personnummerformat
+            // Kolla personnummerformat med regex
             if (!System.Text.RegularExpressions.Regex.IsMatch(personnummer, @"^\d{6}[-]?\d{4}$") &&
                 !System.Text.RegularExpressions.Regex.IsMatch(personnummer, @"^\d{8}[-]?\d{4}$"))
             {
